@@ -1,7 +1,16 @@
 class UsersController < ApplicationController
+    def index
+        @users = User.all
+        render json: @users
+    end
+
     def create
-        @user = User.create(user_params)
-        render json: {user: @user}
+        @user = User.new(user_params)
+        if @user.save
+            render json: {user: @user}
+        else
+            render json: @user.errors.messages
+        end
     end
 
     private
