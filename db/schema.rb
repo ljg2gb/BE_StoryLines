@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_194545) do
+ActiveRecord::Schema.define(version: 2020_05_26_030846) do
+
+  create_table "points", force: :cascade do |t|
+    t.string "name"
+    t.string "post"
+    t.string "latlng"
+    t.integer "story_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_points_on_story_id"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "date"
+    t.string "status"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_stories_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -22,4 +43,6 @@ ActiveRecord::Schema.define(version: 2020_05_25_194545) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "points", "stories"
+  add_foreign_key "stories", "users"
 end
