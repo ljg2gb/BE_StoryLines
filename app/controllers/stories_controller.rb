@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-    before_action :authenticate, only: [:create, :show]
+    before_action :authenticate, only: [:create]
 
     def index
         @stories = Story.all

@@ -1,5 +1,5 @@
 class PointsController < ApplicationController
-    before_action :authenticate, only: [:create]
+    # before_action :authenticate, only: [:create]
 
     def index
         @points = Point.all

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
             render json: {user: @user}
         else
             render json: @user.errors.messages
+
         end
     end
 
