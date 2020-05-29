@@ -3,12 +3,12 @@ class StoriesController < ApplicationController
 
     def index
         @stories = Story.all
-        render json: { stories: @stories }
+        render json: @stories, include: [:points]
     end
 
     def show
         @story = Story.find_by(params[:id])
-        render json: { story: @story }
+        render json: @story, include: [:points]
     end
 
     def create
@@ -19,7 +19,7 @@ class StoriesController < ApplicationController
             status: params[:status],
             user_id: params[:user_id]
         })
-        render json: { story: @story }
+        render json: @story, include: [:points]
     end
 
 end
